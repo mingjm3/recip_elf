@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "npm run build && node ./bin/www",
+    "build": "pushd ../frontend && npm run build && popd"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
