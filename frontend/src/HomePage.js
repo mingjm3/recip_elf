@@ -53,9 +53,8 @@ function HomePage() {
                 Hi! My name is Stella. I am 22 years old and live in the greater
                 Seattle Area. I love creating my own meals, but some times
                 struggle with picking out what meal to make, having peanut and
-                dairy allergies. I am also 2 days away from my menstruation so
-                would like food that help my PMS symptoms to a minimum. Can you
-                help me make a meal plan?
+                dairy allergies. I have listed my ingradients and expiration
+                date in the ingradients Page. Can you help me make a meal plan?
               </p>
             )}
           </div>
