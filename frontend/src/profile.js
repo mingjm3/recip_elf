@@ -59,14 +59,6 @@ function Profile() {
           </div>
 
           <div className="box">
-            <label>Age:</label>
-            <input
-              type="text"
-              value={age}
-              onChange={(e) => setAge(e.target.value)}
-            />
-          </div>
-          <div className="box">
             <label>Email:</label>
             <input
               type="text"
@@ -83,27 +75,11 @@ function Profile() {
             />
           </div>
           <div className="box">
-            <label>City, State:</label>
-            <input
-              type="text"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-            />
-          </div>
-          <div className="box">
             <label>List Allergies:</label>
             <input
               type="text"
               value={allergies}
               onChange={(e) => setAllergies(e.target.value)}
-            />
-          </div>
-          <div className="box">
-            <label>Last Menstruation Date</label>
-            <input
-              type="text"
-              value={period}
-              onChange={(e) => setPeriod(e.target.value)}
             />
           </div>
           <button className="b">Sumbit</button>
