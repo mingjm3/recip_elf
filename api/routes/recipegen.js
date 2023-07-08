@@ -33,7 +33,7 @@ router.post('/', function(req, res, next) {
   }, {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer API Key'
+      'Authorization': 'Bearer ${process.env.API_KEY}'
     }
   })
   .then(function(response) {
