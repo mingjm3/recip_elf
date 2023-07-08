@@ -1,12 +1,21 @@
 import { React } from "react";
 import { useState } from "react";
 
-const IngredientForm = () => {
+const IngredientForm = ({ ingredients, setIngredients }) => {
+  console.log('render', ingredients, setIngredients)
   const [name, setName] = useState(null);
   const [expiration, setExpiration] = useState(null);
-  const addIngredient = async (e) => {
+  const addIngredient = (e) => {
       e.preventDefault()
       console.log('pressed button', name, expiration)
+      console.log('ingredients', ingredients)
+      setIngredients([
+          ...ingredients,
+          {
+              name,
+              expiration
+          }
+      ])
   }
     
   return (
