@@ -1,0 +1,41 @@
+input {
+  width: 30%;
+  height: 25px;
+  margin-top: 16px;
+  background-color: FFFFFA;
+  border-color: black;
+  border-radius: 5px;
+  border-width: 1px;
+  font-size: 18px;
+  margin-left: 15px;
+}
+
+.logo {
+  width: 150px;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+.text {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 7%;
+}
+.box {
+  display: flex;
+  justify-content: center;
+}
+form {
+  background-color: #edf6f9;
+  opacity: 0.8;
+  padding: 50px;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 200px;
+}
+.profile {
+  background-image: linear-gradient(to bottom right, #72a48f, #6db094, #72a48f);
+}
+.b {
+  width: 200px;
+}
