@@ -20,8 +20,8 @@ const IngredientForm = ({ ingredients, setIngredients }) => {
     
   return (
     <div>
-      <h3>Add ingredient</h3>
       <form onSubmit={addIngredient}>
+        <h2>Add Ingredient</h2>
         <div>
           <label htmlFor="name">Ingredient Name</label>
           <input
