@@ -27,6 +27,9 @@ function HomePage() {
               <Link to="/Practice" className="sign-up">
                 Recipes
               </Link>
+              <Link to="/ingredient" className="sign-up">
+                Ingredients
+              </Link>
             </Container>
           </Navbar>
         </div>
