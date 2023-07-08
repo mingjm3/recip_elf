@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var recipegenRouter = require('./routes/recipegen');
+var ingredientRouter = require('./routes/ingredient');
 
 var app = express();
 
@@ -19,6 +20,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname,'../', 'frontend', 'build')));
 
 app.use('/recipegen', recipegenRouter);
+app.use('/ingredient', ingredientRouter);
 
 app.get('*', async (req, res) => {
     res.sendFile(path.join(__dirname,'..', 'frontend', 'build', 'index.html'))
