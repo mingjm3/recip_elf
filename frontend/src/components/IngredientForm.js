@@ -1,18 +1,27 @@
 import { React } from "react";
 import { useState } from "react";
 
-const IngredientForm = () => {
+const IngredientForm = ({ ingredients, setIngredients }) => {
+  console.log('render', ingredients, setIngredients)
   const [name, setName] = useState(null);
   const [expiration, setExpiration] = useState(null);
-  const addIngredient = async (e) => {
+  const addIngredient = (e) => {
       e.preventDefault()
       console.log('pressed button', name, expiration)
+      console.log('ingredients', ingredients)
+      setIngredients([
+          ...ingredients,
+          {
+              name,
+              expiration
+          }
+      ])
   }
     
   return (
     <div>
-      <h3>Add ingredient</h3>
       <form onSubmit={addIngredient}>
+        <h2>Add Ingredient</h2>
         <div>
           <label htmlFor="name">Ingredient Name</label>
           <input
