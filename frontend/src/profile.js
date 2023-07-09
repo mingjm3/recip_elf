@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import Container from "react-bootstrap/Container";
-import Navbar from "react-bootstrap/Navbar";
+import Elfbar from "./components/Elfbar";
 import "./profile.css";
 import logo from "./n.png";
 import { Link } from "react-router-dom";
@@ -26,21 +26,16 @@ function Profile() {
   return (
     <div className="profile">
       <div>
-        <Navbar className="nav" variant="light" expand="lg">
-          <Container>
-            <Navbar.Brand href="HomePage.js">
-              <img className="logo" src={logo} />
-            </Navbar.Brand>
-            {/* <Navbar.Brand href = "profile.js">Sign-Up</Navbar.Brand> */}
-            <Link to="/Practice" className="sign-up">
-              Recipes
-            </Link>
-
-            <Navbar.Brand href="Profile.js" className="sign-up">
-              Sign-Up
-            </Navbar.Brand>
-          </Container>
-        </Navbar>
+      <Elfbar links={[
+          {
+            text: "Recipes",
+            a: "/Practice"
+          },
+          {
+            text: "Ingredients",
+            a: "/ingredient"
+          }]}
+      />
       </div>
       <div class="line-4">
         <hr />

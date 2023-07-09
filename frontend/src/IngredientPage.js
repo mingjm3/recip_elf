@@ -1,3 +1,4 @@
+import Elfbar from "./components/Elfbar";
 import Container from "react-bootstrap/Container";
 import Stack from "react-bootstrap/Stack";
 import Table from "react-bootstrap/Table";
@@ -17,7 +18,16 @@ function IngredientPage() {
 
   return (
     <div className="profile">
-      <h1>IngredientsPage</h1>
+      <Elfbar links={[
+          {
+            text: "Sign-Up",
+            a: "/Profile"
+          },
+          {
+            text: "Recipes",
+            a: "/Practice"
+          }]} />
+      <h1>Ingredients Dashboard</h1>
       <Stack direction="horizontal" gap={3}>
         <Container>
           <Table striped bordered hover>

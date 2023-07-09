@@ -1,10 +1,24 @@
 import { React } from "react";
 import { NavLink } from "react-router-dom";
 import "./practice.css";
+import Elfbar from "./components/Elfbar";
 
 function Practice() {
   return (
     <div>
+      <Elfbar links={[
+          {
+            text: "Sign-Up",
+            a: "/Profile"
+          },
+          {
+            text: "Recipes",
+            a: "/Practice"
+          },
+          {
+            text: "Ingredients",
+            a: "/ingredient"
+          } ]} />
       <h1>Stella's Reciepes</h1>
       <h2>Peanut and Dairy Free</h2>
       <div id="gridDiv">
