@@ -50,7 +50,7 @@ function HomePage() {
             {toggle && (
               <p className="gText">
                 
-                {chatResponse ? chatResponse.response.replace('\n','<br>') : 'loading'}
+                {chatResponse ? chatResponse.response : 'loading'}
 
               </p>
             )}
