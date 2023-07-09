@@ -12,19 +12,7 @@ function HomePage() {
     <body>
       <div className="home">
         <div>
-        <Elfbar links={[
-          {
-            text: "Sign-Up",
-            a: "/Profile"
-          },
-          {
-            text: "Recipes",
-            a: "/Practice"
-          },
-          {
-            text: "Ingredients",
-            a: "/ingredient"
-          } ]} />
+        <Elfbar />
         </div>
         <div class="line-4">
           <hr />

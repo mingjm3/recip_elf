@@ -18,15 +18,7 @@ function IngredientPage() {
 
   return (
     <div className="profile">
-      <Elfbar links={[
-          {
-            text: "Sign-Up",
-            a: "/Profile"
-          },
-          {
-            text: "Recipes",
-            a: "/Practice"
-          }]} />
+      <Elfbar />
       <h1>Ingredients Dashboard</h1>
       <Stack direction="horizontal" gap={3}>
         <Container>

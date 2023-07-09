@@ -6,19 +6,7 @@ import Elfbar from "./components/Elfbar";
 function Practice() {
   return (
     <div>
-      <Elfbar links={[
-          {
-            text: "Sign-Up",
-            a: "/Profile"
-          },
-          {
-            text: "Recipes",
-            a: "/Practice"
-          },
-          {
-            text: "Ingredients",
-            a: "/ingredient"
-          } ]} />
+      <Elfbar />
       <h1>Stella's Reciepes</h1>
       <h2>Peanut and Dairy Free</h2>
       <div id="gridDiv">
