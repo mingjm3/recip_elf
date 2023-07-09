@@ -55,4 +55,5 @@ body {
   width: 50%;
   align-items: center;
   font-size: 20px;
+  white-space: pre-wrap;
 }
