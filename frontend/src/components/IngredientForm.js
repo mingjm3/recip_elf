@@ -1,3 +1,4 @@
+import './IngredientForm.css'
 import { React, useContext } from "react";
 import { useState } from "react";
 import { IngredientsContext } from "./IngredientsProvider";
