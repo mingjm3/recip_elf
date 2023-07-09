@@ -26,16 +26,7 @@ function Profile() {
   return (
     <div className="profile">
       <div>
-      <Elfbar links={[
-          {
-            text: "Recipes",
-            a: "/Practice"
-          },
-          {
-            text: "Ingredients",
-            a: "/ingredient"
-          }]}
-      />
+      <Elfbar/>
       </div>
       <div class="line-4">
         <hr />
