@@ -14,8 +14,8 @@ const Elfbar = () => {
           a: "/Practice"
         },
         {
-          text: "Ingredients",
-          a: "/ingredient"
+          text: "Generate Recipe",
+          a: "/generate"
         }
     ]
     const linkContent = links.map(({ text, a }) => (<Link to={a} className="sign-up">{text}</Link>))

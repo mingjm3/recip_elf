@@ -1,12 +1,30 @@
-import { React, useState } from "react";
+import { React, useState, useContext } from "react";
 import "./HomePage.css";
 import "./components/Elfbar"
 import Elfbar from "./components/Elfbar";
+import { IngredientsContext } from "./components/IngredientsProvider";
 
 function HomePage() {
-  const [prompt, setPrompt] = useState("");
-  const handleGenerate = () => {};
+  const { ingredients } = useContext(IngredientsContext)
+  const [chatResponse, setChatResponse] = useState("");
   const [toggle, setToggle] = useState(false);
+  const handleGenerate = async (e) => {
+    // send ingredients to backend
+    const body = {
+      foods: ingredients,
+      cuisines: ["Italian"],
+      dietaryRestrictions: ["peanuts"]
+    }
+    const res = await fetch("http://localhost:3000/recipegen", {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers: {
+        "content-type": "application/json"
+      }
+    });
+    const data = await res.json()
+    setChatResponse(data)
+  };
 
   return (
     <body>
@@ -14,7 +32,7 @@ function HomePage() {
         <div>
         <Elfbar />
         </div>
-        <div class="line-4">
+        <div className="line-4">
           <hr />
         </div>
 
@@ -26,16 +44,14 @@ function HomePage() {
           </p>
 
           <div className="g">
-            <button onClick={() => setToggle(!toggle)} className=" b mb-5">
+            <button onClick={() => {setToggle(!toggle); handleGenerate()}} className=" b mb-5">
               Generate
             </button>
             {toggle && (
               <p className="gText">
-                Hi! My name is Stella. I am 22 years old and live in the greater
-                Seattle Area. I love creating my own meals, but some times
-                struggle with picking out what meal to make, having peanut and
-                dairy allergies. I have listed my ingradients and expiration
-                date in the ingradients Page. Can you help me make a meal plan?
+                
+                {chatResponse ? chatResponse.response.replace('\n','<br>') : 'loading'}
+
               </p>
             )}
           </div>
