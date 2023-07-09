@@ -1,10 +1,7 @@
 import { React, useState } from "react";
-import Container from "react-bootstrap/Container";
-import Navbar from "react-bootstrap/Navbar";
 import "./HomePage.css";
-import logo from "./n.png";
-import { Link } from "react-router-dom";
-import name from "./profile.js";
+import "./components/Elfbar"
+import Elfbar from "./components/Elfbar";
 
 function HomePage() {
   const [prompt, setPrompt] = useState("");
@@ -15,23 +12,19 @@ function HomePage() {
     <body>
       <div className="home">
         <div>
-          <Navbar className="nav" variant="light" expand="lg">
-            <Container>
-              <Navbar.Brand href="HomePage.js">
-                <img className="logo" src={logo} />
-              </Navbar.Brand>
-              {/* <Navbar.Brand href = "profile.js">Sign-Up</Navbar.Brand> */}
-              <Link to="/Profile" className="sign-up">
-                Sign-Up
-              </Link>
-              <Link to="/Practice" className="sign-up">
-                Recipes
-              </Link>
-              <Link to="/ingredient" className="sign-up">
-                Ingredients
-              </Link>
-            </Container>
-          </Navbar>
+        <Elfbar links={[
+          {
+            text: "Sign-Up",
+            a: "/Profile"
+          },
+          {
+            text: "Recipes",
+            a: "/Practice"
+          },
+          {
+            text: "Ingredients",
+            a: "/ingredient"
+          } ]} />
         </div>
         <div class="line-4">
           <hr />
@@ -44,7 +37,7 @@ function HomePage() {
             Message
           </p>
 
-          <div class="g">
+          <div className="g">
             <button onClick={() => setToggle(!toggle)} className=" b mb-5">
               Generate
             </button>
