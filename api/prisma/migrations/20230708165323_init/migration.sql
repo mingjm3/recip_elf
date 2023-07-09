@@ -11,6 +11,7 @@ CREATE TABLE "User" (
 CREATE TABLE "Ingredient" (
     "id" SERIAL NOT NULL,
     "name" TEXT,
+    "date" DATE,
 
     CONSTRAINT "Ingredient_pkey" PRIMARY KEY ("id")
 );
