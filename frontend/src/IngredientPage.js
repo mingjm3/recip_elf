@@ -1,3 +1,4 @@
+import "./IngredientPage.css";
 import Elfbar from "./components/Elfbar";
 import Container from "react-bootstrap/Container";
 import Stack from "react-bootstrap/Stack";
@@ -21,7 +22,10 @@ function IngredientPage() {
     <div className="profile">
       <Elfbar />
       <h1>Ingredients Dashboard</h1>
-      <Stack direction="horizontal" gap={3}>
+      <div direction="horizontal" gap={3}>
+        <Container>
+          <IngredientForm />
+        </Container>
         <Container>
           <Table striped bordered hover>
             <thead>
@@ -31,10 +35,7 @@ function IngredientPage() {
             <tbody>{tableRows}</tbody>
           </Table>
         </Container>
-        <Container>
-          <IngredientForm />
-        </Container>
-      </Stack>
+      </div>
     </div>
   )
 }

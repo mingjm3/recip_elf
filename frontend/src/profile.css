@@ -1,5 +1,4 @@
 input {
-  width: 30%;
   height: 25px;
   margin-top: 16px;
   background-color: FFFFFA;
@@ -31,7 +30,6 @@ form {
   padding: 50px;
   margin-left: 20%;
   margin-right: 20%;
-  margin-bottom: 200px;
 }
 .profile {
   background-image: linear-gradient(to bottom right, #72a48f, #6db094, #72a48f);

@@ -33,7 +33,6 @@ function HomePage() {
         <Elfbar />
         </div>
         <div className="line-4">
-          <hr />
         </div>
 
         <div className="prompt">
