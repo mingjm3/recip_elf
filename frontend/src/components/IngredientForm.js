@@ -1,26 +1,20 @@
-import { React } from "react";
+import { React, useContext } from "react";
 import { useState } from "react";
+import { IngredientsContext } from "./IngredientsProvider";
 
-const IngredientForm = ({ ingredients, setIngredients }) => {
-  console.log('render', ingredients, setIngredients)
+const IngredientForm = (props) => {
+  console.log('props', props)
+  const { addIngredient } = useContext(IngredientsContext)
   const [name, setName] = useState(null);
   const [expiration, setExpiration] = useState(null);
-  const addIngredient = (e) => {
+  const handleSubmit = (e) => {
       e.preventDefault()
-      console.log('pressed button', name, expiration)
-      console.log('ingredients', ingredients)
-      setIngredients([
-          ...ingredients,
-          {
-              name,
-              expiration
-          }
-      ])
+      addIngredient({ name, expiration })
   }
     
   return (
     <div>
-      <form onSubmit={addIngredient}>
+      <form onSubmit={handleSubmit}>
         <h2>Add Ingredient</h2>
         <div>
           <label htmlFor="name">Ingredient Name</label>

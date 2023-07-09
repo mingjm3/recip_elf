@@ -2,14 +2,15 @@ import Elfbar from "./components/Elfbar";
 import Container from "react-bootstrap/Container";
 import Stack from "react-bootstrap/Stack";
 import Table from "react-bootstrap/Table";
-import { useState } from "react";
+import { useContext } from "react";
+import { IngredientsContext } from "./components/IngredientsProvider";
 import IngredientForm from "./components/IngredientForm";
 function IngredientPage() {
-  const [ingredients, setIngredients] = useState([])
-  const tableRows = ingredients.map(ingredient => {
+  const { ingredients } = useContext(IngredientsContext)
+  const tableRows = ingredients.map((ingredient, i) => {
     const expiry = new Date(ingredient.expiration)
     return (
-        <tr>
+        <tr key={i}>
           <td>{ingredient.name}</td>
           <td>{expiry.toDateString()}</td>
         </tr>
@@ -31,7 +32,7 @@ function IngredientPage() {
           </Table>
         </Container>
         <Container>
-          <IngredientForm ingredients={ingredients} setIngredients={setIngredients} />
+          <IngredientForm />
         </Container>
       </Stack>
     </div>
