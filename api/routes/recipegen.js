@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
+const { isAuthed } = require('../lib/auth/jwt')
 
 const { OpenAIApi } = require("openai");
 
+router.use(isAuthed)
 /**
  * {
  *    cuisine: string
