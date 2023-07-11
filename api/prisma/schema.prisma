@@ -14,12 +14,20 @@ model User {
   id            Int      @id @default(autoincrement())
   email         String   @unique
   name          String?
+  password      String?
   ingredients   Ingredient[]
+  dietaryRestrictions     DietaryRestriction[]
 }
 
 model Ingredient {
   id        Int      @id @default(autoincrement())
   name      String?
   date      DateTime?
+  users     User[]
+}
+
+model DietaryRestriction {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
   users     User[]
 }

@@ -11,7 +11,6 @@ const { OpenAIApi } = require("openai");
  *    dietaryRestrictions: string[]
  * }
  */
-
 router.post('/', function(req, res, next) {
   console.log('body', req.body)
   var requestBody = req.body;
