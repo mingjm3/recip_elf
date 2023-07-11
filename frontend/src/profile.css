@@ -36,4 +36,17 @@ form {
 }
 .b {
   width: 200px;
+  background-color: #ff6b6b;
+}
+
+.link-button {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  /*optional*/
+  font-family: arial, sans-serif;
+  /*input has OS specific font-family*/
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
 }

@@ -3,41 +3,37 @@ import React, { createContext, useReducer } from 'react';
 import IngredientsReducer from './IngredientsReducer';
 
 const initialState = {
-    ingredients: []
+  ingredients: []
 }
 
 export const IngredientsContext = createContext(initialState);
 
 export const IngredientsProvider = ({ children }) => {
-   const [state, dispatch] = useReducer(IngredientsReducer, initialState);
+  const [state, dispatch] = useReducer(IngredientsReducer, initialState);
 
-   // Actions for changing state
+  // Actions for changing state
 
-   function addIngredient(item) {
-     console.log('adding', item)
-       dispatch({
-           type: 'ADD_INGREDIENT',
-           payload: item
-       });
-   }
-   function removeIngredient(item) {
-     console.log('removing', item)
-       dispatch({
-           type: 'REMOVE_INGREDIENT',
-           payload: item
-       });
-   }
+  function addIngredient(item) {
+    dispatch({
+      type: 'ADD_INGREDIENT',
+      payload: item
+    });
+  }
+  function removeIngredient(item) {
+    dispatch({
+      type: 'REMOVE_INGREDIENT',
+      payload: item
+    });
+  }
   const providerValue = {
-    ingredients : state.ingredients,
-    addIngredient, 
+    ingredients: state.ingredients,
+    addIngredient,
     removeIngredient
   }
-  console.log('providerValue', providerValue)
 
-   return(
-      <IngredientsContext.Provider value={providerValue}> 
-        {children} 
-      </IngredientsContext.Provider>
-   )
+  return (
+    <IngredientsContext.Provider value={providerValue}>
+      {children}
+    </IngredientsContext.Provider>
+  )
 }
-

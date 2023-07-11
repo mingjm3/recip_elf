@@ -4,6 +4,7 @@ import Navbar from "react-bootstrap/Navbar";
 import logo from "../n.png";
 import { Link } from "react-router-dom";
 
+
 const Elfbar = () => {
     const links = [
         {
@@ -19,7 +20,7 @@ const Elfbar = () => {
           a: "/generate"
         }
     ]
-    const linkContent = links.map(({ text, a }) => (<Link to={a} className="sign-up">{text}</Link>))
+    const linkContent = links.map(({ text, a }, i) => (<Link to={a} className="sign-up" key={i}>{text}</Link>))
     return (
         <Navbar className="nav" variant="light" expand="lg">
             <Container>

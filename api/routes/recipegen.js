@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
+const { isAuthed } = require('../lib/auth/jwt')
 
 const { OpenAIApi } = require("openai");
 
+router.use(isAuthed)
 /**
  * {
  *    cuisine: string
@@ -11,7 +13,6 @@ const { OpenAIApi } = require("openai");
  *    dietaryRestrictions: string[]
  * }
  */
-
 router.post('/', function(req, res, next) {
   console.log('body', req.body)
   var requestBody = req.body;

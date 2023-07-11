@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { PrismaClient } = require('@prisma/client');
+const { isAuthed } = require('../lib/auth/jwt');
 
 const prisma = new PrismaClient({
     datasources: {
@@ -9,6 +10,8 @@ const prisma = new PrismaClient({
       }
     }
 });
+
+router.use(isAuthed)
 
 router.get('/', async (req, res) => {
     try {
@@ -38,4 +41,4 @@ router.post('/', async (req, res) => {
     }
 });
 
-module.exports = router;  
+module.exports = router;
