@@ -69,7 +69,6 @@ export const UserProfileProvider = ({ children }) => {
         login,
         logout
     }
-    console.log('providerValue', providerValue)
 
     return (
         <UserProfileContext.Provider value={providerValue}>

@@ -1,6 +1,6 @@
 import { React, useState, useContext } from "react";
-import ListGroup from 'react-bootstrap/ListGroup';
 import { UserProfileContext } from "./UserProfileProvider";
+import './SignupForm.css'
 
 // see api/lib/auth/password.js
 const SUPPORTED_EMAIL_DOMAINS = [
@@ -15,9 +15,8 @@ const SUPPORTED_EMAIL_DOMAINS = [
     '.edu'
 ]
 
-const domainContent = SUPPORTED_EMAIL_DOMAINS.map((domain, i) => (<ListGroup.Item key={i}>{domain}</ListGroup.Item>))
 const SignupForm = () => {
-    const { signup, token } = useContext(UserProfileContext)
+    const { signup } = useContext(UserProfileContext)
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -40,12 +39,19 @@ const SignupForm = () => {
                 </div>
 
                 <div className="box">
-                    <label>Email:</label>
-                    <input
-                        type="text"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
+                    <label>Email:
+                        <span>
+                            <input
+                                type="text"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                            <small className="email-domain-list">
+                                Supported domains: {SUPPORTED_EMAIL_DOMAINS.join(', ')}
+                            </small>
+                        </span>
+
+                    </label>
                 </div>
                 <div className="box">
                     <label>Password:</label>
@@ -56,22 +62,17 @@ const SignupForm = () => {
                     />
                 </div>
                 <div className="box">
-                    <label>List Dietary Restrictions:</label>
-                    <input
-                        type="text"
-                        value={dietaryRestrictions}
-                        onChange={(e) => setDietaryRestrictions(e.target.value)}
-                    />
+                    <label>List Dietary Restrictions:
+                        <input
+                            type="text"
+                            value={dietaryRestrictions}
+                            onChange={(e) => setDietaryRestrictions(e.target.value)}
+                        />
+                    </label>
                 </div>
                 <button className="b">Submit</button>
             </form>
-
-            <div className="email-domain-list">
-                <h2 className="domain-list-title">Supported email domains:</h2>
-                <ListGroup className="w-25">{domainContent}</ListGroup>
-            </div>
         </>
-
     )
 }
 

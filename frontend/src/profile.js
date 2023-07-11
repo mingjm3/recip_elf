@@ -28,9 +28,5 @@ function Profile() {
     </div>
   );
 }
-// const data = [
-//     {name}, {age}, {email}, {password}, {location},
-//     {allergies}, {period} ];
-export const name = Profile.name;
-export const date = Profile.date;
+
 export default Profile;
