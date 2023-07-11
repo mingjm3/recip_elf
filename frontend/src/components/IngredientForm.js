@@ -4,7 +4,6 @@ import { useState } from "react";
 import { IngredientsContext } from "./IngredientsProvider";
 
 const IngredientForm = (props) => {
-  console.log('props', props)
   const { addIngredient } = useContext(IngredientsContext)
   const [name, setName] = useState(null);
   const [expiration, setExpiration] = useState(null);

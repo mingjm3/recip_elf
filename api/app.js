@@ -31,7 +31,6 @@ app.get('*', async (req, res) => {
 
 // error handler
 app.use(function(err, req, res, next) {
-  console.log('in error handler middleware')
   // print to console for dev stuff
   console.error(err.message)
   console.error(err.stack)

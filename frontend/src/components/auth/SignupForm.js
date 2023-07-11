@@ -22,7 +22,6 @@ const SignupForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [dietaryRestrictions, setDietaryRestrictions] = useState("");
-    console.log(token)
     const handleSubmit = async (e) => {
         e.preventDefault()
         await signup({ name, email, password, dietaryRestrictions: dietaryRestrictions.split(',') })

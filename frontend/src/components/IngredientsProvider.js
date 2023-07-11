@@ -14,14 +14,12 @@ export const IngredientsProvider = ({ children }) => {
   // Actions for changing state
 
   function addIngredient(item) {
-    console.log('adding', item)
     dispatch({
       type: 'ADD_INGREDIENT',
       payload: item
     });
   }
   function removeIngredient(item) {
-    console.log('removing', item)
     dispatch({
       type: 'REMOVE_INGREDIENT',
       payload: item
@@ -32,7 +30,6 @@ export const IngredientsProvider = ({ children }) => {
     addIngredient,
     removeIngredient
   }
-  console.log('providerValue', providerValue)
 
   return (
     <IngredientsContext.Provider value={providerValue}>

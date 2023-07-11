@@ -14,21 +14,17 @@ router.get('/', (req, res) => {
 })
 
 router.post('/signup', async (req, res, next) => {
-    console.log(req.body)
     const { name, email, password, dietaryRestrictions } = req.body
     let user = await prisma.user.findFirst({
         where: { email }
     })
     if (user) {
-        console.log('found existing user')
         return res.status(400).json(SIGNUP_FAILURE_RESPONSE)
     }
     if (!validateEmail(email)) {
-        console.log('email validation failed')
         return res.status(400).json(SIGNUP_FAILURE_RESPONSE)
     }
     if (!validatePassword(password)) {
-        console.log('password validation failed')
         return res.status(400).json(SIGNUP_FAILURE_RESPONSE)
     }
     const hashedPassword = await hash(password)
@@ -60,7 +56,6 @@ router.post('/signup', async (req, res, next) => {
 })
 
 router.post('/login/credential', async (req, res) => {
-    console.log('here')
     const { email, password } = req.body
     if (!validateEmail(email)) {
         return res.status(400).json(LOGIN_FAILURE_RESPONSE)
