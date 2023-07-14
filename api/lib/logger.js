@@ -12,9 +12,7 @@ const logger = winston.createLogger({
             colorize: true
         }),
         new (winston.transports.File)({
-            maxsize: 100, // bytes
-            maxFiles: 1,
-            filename: 'logs/recipelf.log'
+            filename: '/recip_elf/logs/recipelf.log'
         })
     ]
 });

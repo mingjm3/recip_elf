@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  recip_elf:
+    build: .
+    ports:
+      - 3000:3000
+    volumes:
+      - ./api/logs:/recip_elf/logs

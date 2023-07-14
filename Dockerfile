@@ -7,4 +7,4 @@ RUN npm ci
 WORKDIR /recip_elf/api
 RUN npm ci
 EXPOSE 3000
-CMD [ "node", "api/bin/www" ]
+CMD [ "node", "bin/www" ]
