@@ -1,26 +1,51 @@
 const winston = require('winston')
+const morgan = require('morgan')
 const os = require('os')
-const customFormatter = ({ level, message, data }) =>    `[${level}] : ${message} \nData: ${JSON.stringify(data)}}`
-const logger = new winston.createLogger({
-    format: winston.format.json(),
+const { combine, timestamp, json } = winston.format
+
+const logger = winston.createLogger({
+    format: combine(timestamp(), json()),
+    level: process.env.LOG_LEVEL || 'info',
     transports: [
         new (winston.transports.Console)({
             timestamp: true,
-            colorize: true,
-            messageFormatter: customFormatter
+            colorize: true
         }),
         new (winston.transports.File)({
-            maxsize: 1000, // bytes
+            maxsize: 100, // bytes
             maxFiles: 1,
-            filename: 'recipelf-logs.log'
+            filename: 'logs/recipelf.log'
         })
-   ]
+    ]
 });
 
-const logCluster = (cluster) => {
+module.exports.logCluster = (cluster) => {
     cluster.meshes = cluster.meshes.map(mesh => mesh.id)
     return cluster
 }
-module.exports.logCluster = logCluster
-module.exports.logger = logger;
 
+/**
+ * logging middleware, passes morgan output to winston.
+ * See guide: https://betterstack.com/community/guides/logging/how-to-install-setup-and-use-winston-and-morgan-to-log-node-js-applications/
+ */
+module.exports.logMiddleWare = morgan(
+    function (tokens, req, res) {
+        return JSON.stringify({
+            method: tokens.method(req, res),
+            url: tokens.url(req, res),
+            status: Number.parseFloat(tokens.status(req, res)),
+            content_length: tokens.res(req, res, 'content-length'),
+            response_time: Number.parseFloat(tokens['response-time'](req, res)),
+        });
+    },
+    {
+        stream: {
+            write: (message) => {
+                const data = JSON.parse(message)
+                logger.info('incoming-request', data)
+            }
+        },
+    }
+);
+
+module.exports.logger = logger
