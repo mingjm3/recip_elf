@@ -134,3 +134,6 @@ build
 
 # MacOS
 .DS_STORE
+
+# docker images
+*.tar
