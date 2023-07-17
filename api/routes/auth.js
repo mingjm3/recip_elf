@@ -28,13 +28,6 @@ router.post('/signup', async (req, res, next) => {
         return res.status(400).json(SIGNUP_FAILURE_RESPONSE)
     }
     const hashedPassword = await hash(password)
-    const existingRestrictions = prisma.dietaryRestriction.findMany({
-        where: {
-            name: {
-                hasAny: dietaryRestrictions
-            }
-        }
-    })
     // https://stackoverflow.com/questions/68874214/how-to-use-connectorcreate-with-many-to-many-in-prisma
     user = await prisma.user.create({
         data: {
@@ -64,7 +57,10 @@ router.post('/login/credential', async (req, res) => {
         return res.status(400).json(LOGIN_FAILURE_RESPONSE)
     }
     let user = await prisma.user.findFirst({
-        where: { email }
+        where: { email },
+        include: {
+            dietaryRestrictions: true
+        }
     })
     if (!user) {
         return res.status(400).json(LOGIN_FAILURE_RESPONSE)
@@ -73,7 +69,7 @@ router.post('/login/credential', async (req, res) => {
         return res.status(400).json(LOGIN_FAILURE_RESPONSE)
     }
     const token = generate(email)
-    return res.status(200).json({ token, profile: { name: user.name, email: user.email, allergies: user.allergies } })
+    return res.status(200).json({ token, profile: { name: user.name, email: user.email, dietaryRestrictions: user.dietaryRestrictions } })
 })
 
 router.post('/login/magic', async (req, res) => {

@@ -4,12 +4,11 @@ import Navbar from "react-bootstrap/Navbar";
 import logo from "../n.png";
 import { Link } from "react-router-dom";
 
-
 const Elfbar = () => {
     const links = [
         {
-          text: "Sign-Up",
-          a: "/Profile"
+          text: "Sign Up / Log In",
+          a: "/auth"
         },
         {
           text: "Recipes",
@@ -27,7 +26,6 @@ const Elfbar = () => {
                 <Navbar.Brand href="/">
                     <img className="logo" src={logo} />
                 </Navbar.Brand>
-                {/* <Navbar.Brand href = "profile.js">Sign-Up</Navbar.Brand> */}
                 {linkContent}
             </Container>
         </Navbar>

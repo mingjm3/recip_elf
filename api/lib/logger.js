@@ -12,7 +12,7 @@ const logger = winston.createLogger({
             colorize: true
         }),
         new (winston.transports.File)({
-            filename: '/recip_elf/logs/recipelf.log'
+            filename: process.env.NODE_ENV === 'production' ? '/recip_elf/logs/recipelf.log' : './recipelf.log'
         })
     ]
 });

@@ -30,7 +30,6 @@ function HomePage() {
   };
 
   return (
-    <body>
       <div className="home">
         <div>
         <Elfbar />
@@ -60,7 +59,6 @@ function HomePage() {
           <p className="generator"></p>
         </div>
       </div>
-    </body>
   );
 }
 export default HomePage;

@@ -19,7 +19,7 @@ function IngredientPage() {
   })
 
   return (
-    <div className="profile">
+    <div className="auth">
       <Elfbar />
       <h1>Ingredients Dashboard</h1>
       <div direction="horizontal" gap={3}>
