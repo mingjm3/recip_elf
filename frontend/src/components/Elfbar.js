@@ -24,7 +24,7 @@ const Elfbar = () => {
         <Navbar className="nav" variant="light" expand="lg">
             <Container>
                 <Navbar.Brand href="/">
-                    <img className="logo" src={logo} />
+                    <img className="logo" src={logo} alt="recipelf logo, a slightly open domed lid on a plate; a cloche" />
                 </Navbar.Brand>
                 {linkContent}
             </Container>
