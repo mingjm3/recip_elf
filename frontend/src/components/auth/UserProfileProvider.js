@@ -3,7 +3,7 @@ import React, { createContext, useReducer } from 'react';
 import UserProfileReducer from './UserProfileReducer';
 
 const initialState = {
-    server: process.env.NODE_ENV === 'production' ? 'https://recipelf.com' : 'http://localhost:3000',
+    server: process.env.NODE_ENV === 'production' ? 'https://api.recipelf.com' : 'http://localhost:3000',
     name: '',
     dietaryRestrictions: [],
     token: ''
