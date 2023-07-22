@@ -1,14 +1,11 @@
 const reducer = (state, action) => {
-    console.log({ state, action })
     switch(action.type) {
-        case 'LOG_IN' || 'SIGN_UP':
-            let { token, profile } = action.payload
-            console.log('reducer', { token, profile })
+        case 'LOGIN':
+            const { token, profile } = action.payload
             return {
                     token,
                     name: profile.name,
-                    server: state.server,
-                    dietaryRestrictions: profile.dietaryRestrictions
+                    allergies: profile.allergies
             }
         case 'LOGOUT':
             return action.payload

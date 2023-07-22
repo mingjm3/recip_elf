@@ -3,9 +3,9 @@ import React, { createContext, useReducer } from 'react';
 import UserProfileReducer from './UserProfileReducer';
 
 const initialState = {
-    server: process.env.NODE_ENV === 'production' ? 'https://api.recipelf.com' : 'http://localhost:3000',
+    server: 'http://localhost:3000',
     name: '',
-    dietaryRestrictions: [],
+    allergies: [],
     token: ''
 }
 
@@ -38,7 +38,7 @@ export const UserProfileProvider = ({ children }) => {
     }
 
     async function login({ email, password }) {
-        const res = await fetch(`${state.server}/auth/login/credential`, {
+        const res = await fetch(`${state.server}/auth/login`, {
             method: "POST",
             headers: {
                 "content-type":"application/json"
