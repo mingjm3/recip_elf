@@ -2,14 +2,14 @@ import { React, useState } from "react";
 import Elfbar from "./components/Elfbar";
 import LoginForm from "./components/auth/LoginForm";
 import SignupForm from "./components/auth/SignupForm";
-import "./profile.css";
+import "./Auth.css";
 
-function Profile() {
+function Auth() {
   const [newUser, setNewUser] = useState(true)
 
   //name instead of prompt
   return (
-    <div className="profile">
+    <div className="auth">
       <div>
         <Elfbar />
       </div>
@@ -29,4 +29,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default Auth;

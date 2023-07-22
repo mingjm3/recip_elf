@@ -1,5 +1,6 @@
 import { React, useState, useContext } from "react";
 import { UserProfileContext } from "./UserProfileProvider";
+import { useLocation, useNavigate } from 'react-router-dom'
 import './SignupForm.css'
 
 // see api/lib/auth/password.js
@@ -21,9 +22,14 @@ const SignupForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [dietaryRestrictions, setDietaryRestrictions] = useState("");
+    const navigate = useNavigate()
+    const location = useLocation()
+    
     const handleSubmit = async (e) => {
         e.preventDefault()
         await signup({ name, email, password, dietaryRestrictions: dietaryRestrictions.split(',') })
+        const origin = location.state?.from?.pathname || '/';
+        navigate(origin);
     }
     return (
         <>
@@ -70,7 +76,7 @@ const SignupForm = () => {
                         />
                     </label>
                 </div>
-                <button className="b">Submit</button>
+                <button className="b">Sign Up</button>
             </form>
         </>
     )

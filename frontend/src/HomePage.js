@@ -3,9 +3,11 @@ import "./HomePage.css";
 import "./components/Elfbar"
 import Elfbar from "./components/Elfbar";
 import { IngredientsContext } from "./components/IngredientsProvider";
+import { UserProfileContext } from "./components/auth/UserProfileProvider";
 
 function HomePage() {
   const { ingredients } = useContext(IngredientsContext)
+  const { server, token } = useContext(UserProfileContext)
   const [chatResponse, setChatResponse] = useState("");
   const [toggle, setToggle] = useState(false);
   const handleGenerate = async (e) => {
@@ -15,11 +17,12 @@ function HomePage() {
       cuisines: ["Italian"],
       dietaryRestrictions: ["peanuts"]
     }
-    const res = await fetch("http://localhost:3000/recipegen", {
+    const res = await fetch(`${server}/recipegen`, {
       method: "POST",
       body: JSON.stringify(body),
       headers: {
-        "content-type": "application/json"
+        "content-type": "application/json",
+        "authorization": `Bearer ${token}`
       }
     });
     const data = await res.json()
@@ -27,7 +30,6 @@ function HomePage() {
   };
 
   return (
-    <body>
       <div className="home">
         <div>
         <Elfbar />
@@ -57,7 +59,6 @@ function HomePage() {
           <p className="generator"></p>
         </div>
       </div>
-    </body>
   );
 }
 export default HomePage;
