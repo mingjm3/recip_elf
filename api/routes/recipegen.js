@@ -1,5 +1,4 @@
 const express = require('express');
-const winston = require('winston')
 const router = express.Router();
 const axios = require('axios');
 const { isAuthed } = require('../lib/auth/jwt')
@@ -15,7 +14,7 @@ router.use(isAuthed)
  * }
  */
 router.post('/', function(req, res, next) {
-  logger.log('debug', 'body', req.body)
+  console.log('body', req.body)
   var requestBody = req.body;
   var users = requestBody.users;
   var cuisine = requestBody.cuisine;
@@ -39,7 +38,7 @@ router.post('/', function(req, res, next) {
   };
   messages.push(userMessage);
 
-  logger.log('debug', 'messages', messages);
+  console.log(messages);
 
   axios.post('https://api.openai.com/v1/chat/completions', {
     model: "gpt-3.5-turbo",
@@ -51,7 +50,7 @@ router.post('/', function(req, res, next) {
     }
   })
   .then(function(response) {
-    logger.log('debug', 'response', response)
+    console.log('response', response)
     var generatedText = response.data.choices[0].message.content;
     res.json({ response: generatedText });
   })

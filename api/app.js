@@ -1,9 +1,9 @@
 var express = require('express');
 var path = require('path');
+var logger = require('morgan');
 var cors = require('cors');
 var dotenv = require('dotenv')
 dotenv.config()
-const { logMiddleWare } = require('./lib/logger')
 
 var authRouter = require('./routes/auth');
 var recipegenRouter = require('./routes/recipegen');
@@ -11,18 +11,22 @@ var ingredientRouter = require('./routes/ingredient');
 
 var app = express();
 
-app.use(logMiddleWare)
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+
+app.use(logger('dev'));
 app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, '../', 'frontend', 'build')));
+app.use(express.static(path.join(__dirname,'../', 'frontend', 'build')));
 
 app.use('/auth', authRouter)
 app.use('/recipegen', recipegenRouter);
 app.use('/ingredient', ingredientRouter);
 
-app.use((req, res, next) => {
-  res.status(404).json({ error: "Sorry can't find that!" })
+app.get('*', async (req, res) => {
+    res.sendFile(path.join(__dirname,'..', 'frontend', 'build', 'index.html'))
 })
 
 // error handler
@@ -36,7 +40,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.json({ error: "there was an error" });
+  res.render('error');
 });
 
 module.exports = app;
