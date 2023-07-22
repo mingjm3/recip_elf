@@ -1,5 +1,6 @@
 // shamelessly stolen from: https://medium.com/@aleksandrasays/sending-magic-links-with-nodejs-765a8686996
 const jwt = require('jsonwebtoken')
+const { logger } = require('../logger')
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
@@ -19,41 +20,41 @@ module.exports.generate = (email) => {
  * @returns {void}
  */
 module.exports.isAuthed = async (req, res, next) => {
-    console.log('isAuthed')
+    logger.log("debug", 'isAuthed')
     try {
         const auth = req.headers.authorization;
         if (!auth || !auth.startsWith('Bearer ')) {
-            console.log('no token or improperly formatted')
+            logger.log("debug", 'no token or improperly formatted')
             res.status(403).send(ERROR_RESPONSE)
             return;
         }
     
         const token = auth.substring(7, auth.length);
-        console.log({ token })
+        logger.log("debug", 'token', { token })
         let decoded;
         try {
             decoded = jwt.verify(token, process.env.JWT_SECRET)
         } catch {
-            console.log('bad decode')
+            logger.log("debug", 'bad decode')
             res.status(403).send(ERROR_RESPONSE)
             return;
         }
         
         if (!decoded.hasOwnProperty('email') || !decoded.hasOwnProperty('expiration')) {
-            console.log("token doesn't have the correct properties")
+            logger.log("debug", "token doesn't have the correct properties")
             res.status(403).send(ERROR_RESPONSE)
             return;
         }
     
         const { email, expiration } = decoded
         if (expiration < new Date()) {
-            console.log('token is expired')
+            logger.log("debug", 'token is expired')
             res.status(403).send(ERROR_RESPONSE)
         }
 
         const user = await prisma.user.findFirst({ where: { email }})
         if (!user) {
-            console.log("user doesn't exist")
+            logger.log("debug", "user doesn't exist")
             res.status(400).send(ERROR_RESPONSE)
         }
     } catch (err) {
